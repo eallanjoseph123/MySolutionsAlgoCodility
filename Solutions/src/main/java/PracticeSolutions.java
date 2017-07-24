@@ -8,6 +8,26 @@ public class PracticeSolutions {
 		
 	}
 	
+	public static int permMissingElem(int[] A){
+		int res = 0;
+		int l = A.length;
+		Arrays.sort(A);
+		if(l == 0) return 1;
+		for(int x = 0 ; x < l ; x++){
+			    int f = A[x] + 1;
+			    if(x == 0 && A[x] != 1){
+			    	res = 1;
+					break;
+			    }if( (x+1) < l && f == A[x + 1]){
+					continue;
+				}else{
+					res = f;
+					break;
+				}
+		}
+		return res;
+	}
+	
 	public static int oddOccurrencesInArray(int A[]){
 		Arrays.sort(A);
 		if(A.length == 1) return A[0];

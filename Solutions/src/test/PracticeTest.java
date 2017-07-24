@@ -8,6 +8,22 @@ import main.java.PracticeSolutions;
 public class PracticeTest {
 	
 	@Test
+	public void permMissingElemTest(){
+		Assert.assertEquals(4,PracticeSolutions.
+				permMissingElem(new int[]{2,3,1,5}) );
+		Assert.assertEquals(1,PracticeSolutions.
+				permMissingElem(new int[]{2,3,4,5}) );
+		Assert.assertEquals(6,PracticeSolutions.
+				permMissingElem(new int[]{1,2,3,4,5}) );
+		Assert.assertEquals(2,PracticeSolutions.
+				permMissingElem(new int[]{1}));
+		Assert.assertEquals(1,PracticeSolutions.
+				permMissingElem(new int[]{0}));
+		Assert.assertEquals(1,PracticeSolutions.
+				permMissingElem(new int[]{}));
+	}
+	
+	@Test
 	public void oddOccurrencesInArrayTest(){
 		/*Assert.assertEquals(42, 
 				PracticeSolutions.oddOccurrencesInArray(new 
