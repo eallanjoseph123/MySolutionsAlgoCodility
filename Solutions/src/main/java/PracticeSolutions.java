@@ -1,11 +1,202 @@
 package main.java;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PracticeSolutions {
 
 	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int n = 5;
+		int c = 0;
+		for (int x = n; x >= 1; x -= 2) {
+			for (int z = 0; z < c; z++) {
+				System.out.print(" ");
+			}
+			for (int y = 0; y < x; y++) {
+				System.out.print("*");
+			}
+			System.out.println();
+			c += 1;
+		}
+
+		System.out.println(0 % 11);
+	    
+	}
+	
+	public static int tapeEquilibrium(int[] A){
+		int l = A.length;
+		int res = 100_000;
+		int total = IntStream.of(A).sum();
+		int sum = 0;
+		for(int x = 0 ; x < l-1 ; x++){
+			sum += A[x];
+			res = Math.min(res, Math.abs(sum - (total-sum)));
+		}
+		return res;
+	}
+	
+	public static int sum(){
+		int res = 0;
+
+		return res;
+	}
+	
+	public static int getValue(String key, String code) {
+		int l = code.length();
+		StringBuilder sb = new StringBuilder();
+		for(int x = 0;x < l ; x++){
+			int in = key.indexOf(code.charAt(x));
+			if(in != -1){
+				if(in == key.length() - 1){
+					sb.append(0);
+				}else{
+					in +=1;
+					sb.append(in);
+				}
+			}
+		}
+		return Integer.valueOf(sb.toString());
+	}
+	//75 score
+	public static int countDiv(int A ,int B , int K){
+		int res = 0;
+		int t = 0;
+		t = (B%2) == 0 ? B : B-1;
+		res = ((t-A)/K);
+		return res+1 ;
 		
+	}
+	
+	public static int distinct(int []A)
+	{
+		int res = 0;
+		Arrays.sort(A);
+		List< Integer > list = Arrays.stream(A).boxed().collect(Collectors.toList());
+		Set<Integer> set = new HashSet<>(list);
+		return set.size();
+	}
+
+	public static String print(int n) {
+		StringBuilder res = new StringBuilder("");
+		String res2 = "";
+		if (n < 0 || (n % 2) == 0) {
+			return null;
+		}else {
+			for(int x = 0 ; x < n; x++){
+				for(int y = 0 ; y <= x; y++){
+					
+				}
+			}
+		}
+
+		return res.toString();
+
+	}
+	
+	public static int countPassengers(ArrayList<int[]> stops) {
+		int res = 0;
+		for(int []n:stops){
+			res = res + n[0] - n[1];
+		}
+		return res;
+	}
+	
+	
+	public static int solution2(int[] A, int X) {
+        int N = A.length;
+        if (N == 0) {
+            return -1;
+        }
+        int l = 0;
+        int r = N - 1;
+        while (l < r) {
+            int m = (l + r) / 2;
+            int c = A[m];
+            if (c >= X) {
+                r = m - 1;
+            }
+                l = m;
+            
+        }
+        if (A[l] == X) {
+            return l;
+        }
+        return -1;
+    }
+	 public static long thirt(long n) {
+	       long []A = {1,10,9,12,3,4};
+	       int c = 0;
+	       long d = 0;
+	       long result = 0;
+	       long s = 0;
+	       long m = -1;
+	       while(true){
+	         d = n % 10;
+	         n = n / 10;
+	         if(m == 2){
+	          break;
+	         }
+	         if(n < 10){
+	           long z = n % 10;
+	           c = A.length > c ? c : 0;
+	           s = s + (d*A[c]) + (z*A[c+1]);
+	           result = s;
+	           c = 0;
+	           n = s;
+	           s = 0;
+	           m++;
+	         }else{
+	        	 c = A.length > c ? c : 0;
+	            s = s+ (d*A[c]);
+	            c+=1;
+	         }
+	       }
+	       
+	       return result;
+	    }
+	//error
+	public static int frogRiver(int X,int[] A){
+		int l = A.length;
+		List< Integer > list = Arrays.stream(A).boxed().collect(Collectors.toList());
+		int res = -1;
+		for(int k = 0 ; k < l ; k++){
+			int p = A[k];
+			if(X == p){
+				res = k;
+				break;
+			}
+		}
+		for(int y = 1 ; y <= X; y++){
+			if(!list.contains(y)){
+				res = -1;
+				break;
+			}
+		}
+		return res;
+	}
+	
+	// frogjump
+	public static int frogjump(int X, int Y, int D) {
+		int res = Y - X;
+		int res2 = res / D;
+		int res3 = res2 * D;
+		int res4 = res3 + X;
+		if (res4 >= Y) {
+			return res2;
+		} else {
+			int res5 = Y - res4;
+			if (res5 < D) {
+				return res2 + 1;
+			}
+		}
+		return 0;
 	}
 	
 	public static int permMissingElem(int[] A){
@@ -73,7 +264,7 @@ public class PracticeSolutions {
 		int index2 = 0;
 		int start = 0;
 		int start2 = 0;
-		int h = 0, l =0;
+		int h = 0;
 		if(!binary.contains("0")){return 0;}
 		while(true){
 			index = binary.indexOf("1", start);
@@ -81,10 +272,7 @@ public class PracticeSolutions {
 				start2 = index + 1;
 				index2 = binary.indexOf("1", start2);
 				if (index2 != -1) {
-					l = binary.substring(index+1,index2).length();
-					if (h < l) {
-						h = l;
-					}
+					h = Math.max(h, binary.substring(index+1,index2).length());
 				}
 			}
 			if(index == -1){
