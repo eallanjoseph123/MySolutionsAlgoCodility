@@ -6,4 +6,4 @@
 4  PermMissingElem   - 100 (O(n * logn))
 
 
-****There are some solutions with corresponding scores that are not including this README.md. Please check it Practice class you can see there. *****
+****There are some solutions with corresponding scores that are not included here in (README.md). Please check it on Practice class you can see there. ****
