@@ -3,12 +3,71 @@ package test;
 import java.util.ArrayList;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import main.java.PracticeSolutions;
 
 public class PracticeTest {
 	
+	
+	@Test
+	public void maxCounterTest(){
+		Assert.assertArrayEquals(new int[]
+				{3,2,0},PracticeSolutions.
+				maxCounter(3, new int[]{2,1,1,2,1}));
+		Assert.assertArrayEquals(new int[]
+				{3},PracticeSolutions.
+				maxCounter(1, new int[]{2,1,1,2,1}));
+		Assert.assertArrayEquals(new int[]
+	{1},PracticeSolutions.
+	maxCounter(1, new int[]{1}));
+		Assert.assertArrayEquals(new int[]
+				{3,2,2,4,2},PracticeSolutions.
+				maxCounter(5, new int[]{3,4,4,6,1,4,4}));
+	}
+	
+	@Ignore
+	@Test
+	public void missingIntegerTest() {
+		Assert.assertEquals(1,
+				PracticeSolutions.missingInteger(new int[]{4}));
+		Assert.assertEquals(1,
+				PracticeSolutions.missingInteger(new int[]{0}));
+		Assert.assertEquals(2,
+				PracticeSolutions.missingInteger(new int[]{1}));
+		Assert.assertEquals(1,
+				PracticeSolutions.missingInteger(new int[]{-1,-1,2,3,2,4,4}));
+		Assert.assertEquals(1,
+				PracticeSolutions.missingInteger(new int[]{7,3,6,4,7,2}));
+			Assert.assertEquals(1,
+				PracticeSolutions.missingInteger(new int[]{-1,-1,2,3,2,4,4}));
+		Assert.assertEquals(5,
+				PracticeSolutions.missingInteger(new int[]{1,3,6,4,1,2}));
+		Assert.assertEquals(1,
+				PracticeSolutions.missingInteger(new int[]{
+						-1,-3,-6,-4,-1,-2}));
+		Assert.assertEquals(6,
+				PracticeSolutions.missingInteger(new int[]{
+			1,2,2,4,4,1,2,2,1,4,3,3,3,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,5,5,5,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,7,7,7,7,7,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,
+			1,2,2,4,4,1,2,2,1,4,}));
+	}
 	@Test
 	public void tapeEquilibriumTest() {
 		Assert.assertEquals(1,

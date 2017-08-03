@@ -12,22 +12,44 @@ import java.util.stream.IntStream;
 public class PracticeSolutions {
 
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		int n = 5;
-		int c = 0;
-		for (int x = n; x >= 1; x -= 2) {
-			for (int z = 0; z < c; z++) {
-				System.out.print(" ");
+		
+	}
+	//77score
+	public static int[] maxCounter(int N,int[]A){
+		int []b = new int[N];
+		int  l = A.length;
+		int last = Math.max(0, 0);
+		for(int x = 0 ; x < l ; x++){
+			int c = A[x];
+			if(c <= N){
+				int t = c-1;
+				b[t] = b[t]+1;
+				last = Math.max(last, b[t]);
+			}else if(c == (N+1)){
+				Arrays.fill(b, last);
 			}
-			for (int y = 0; y < x; y++) {
-				System.out.print("*");
-			}
-			System.out.println();
-			c += 1;
 		}
-
-		System.out.println(0 % 11);
-	    
+		return b;
+	}
+	//less than 50 score
+	public static int missingInteger(int[] A){
+		int res = 1;
+		int l = A.length;
+		int last = 0;
+		Arrays.sort(A);
+		for(int x = 0 ; x < l ; x++){
+			int cv = A[x];
+			if(last == cv){	
+				res-=1;
+				continue;
+			}
+			if(res != cv){
+			  break;
+			}
+			last = cv;
+			res += 1;
+		}
+		return res;
 	}
 	
 	public static int tapeEquilibrium(int[] A){
