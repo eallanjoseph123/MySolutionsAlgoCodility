@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,23 +11,69 @@ import java.util.stream.IntStream;
 public class PracticeSolutions {
 
 	public static void main(String[] args) {
-		
+		System.out.println(-5*5* -5);
+	}
+	
+	//100
+	public static int passingCar(int []A){
+		int res = 0;
+		int z = 0;
+		for(int x=0;x < A.length;x++){
+			if(A[x] == 0){
+				z++;
+			}
+			if(A[x] == 1 && z>0){
+				res+=z;
+			}
+		}
+		if(res > 1_000_000_000 || res <0) res = -1;
+		return res;
+	}
+	//93 score
+	public static int triangle(int[] A) {
+		int l = A.length;
+		Arrays.sort(A);
+
+		if (l < 3)
+			return 0;
+		for (int x = 2; x < l; x++) {
+			int t = A[x - 2] + A[x - 1];
+			if (t > A[x]) {
+				return 1;
+			}
+		}
+
+		return 0;
+	}
+	//100 score //O(n)
+	public static int maxProductOfThree(int []A){
+		int res = -1000;
+		int l = A.length - 1;
+		Arrays.sort(A);
+		int f2= A[0] * A[1] * A[l];
+		int f = Math.max(f2, A[0] * A[1] * A[2]);
+		int s =  A[l] * A[l - 1] * A[l - 2];
+		res = Math.max(f, s);
+		return res;
 	}
 	//77score
 	public static int[] maxCounter(int N,int[]A){
-		int []b = new int[N];
-		int  l = A.length;
-		int last = Math.max(0, 0);
-		for(int x = 0 ; x < l ; x++){
+		int[] b = new int[N];
+		int l = A.length;
+		int last = 0;
+		for (int x = 0; x < l; x++) {
 			int c = A[x];
-			if(c <= N){
-				int t = c-1;
-				b[t] = b[t]+1;
+			if (c <= N){
+				int t = c - 1;
+				b[t] = b[t] + 1;
 				last = Math.max(last, b[t]);
-			}else if(c == (N+1)){
-				Arrays.fill(b, last);
+			}if(c == (N+1)){
+				for (int y = 0; y < N; y++) {
+						b[y] = last;
+				}
 			}
 		}
+
 		return b;
 	}
 	//less than 50 score
@@ -98,7 +143,6 @@ public class PracticeSolutions {
 	
 	public static int distinct(int []A)
 	{
-		int res = 0;
 		Arrays.sort(A);
 		List< Integer > list = Arrays.stream(A).boxed().collect(Collectors.toList());
 		Set<Integer> set = new HashSet<>(list);
@@ -183,23 +227,27 @@ public class PracticeSolutions {
 	       
 	       return result;
 	    }
-	//error
+	//100 
 	public static int frogRiver(int X,int[] A){
-		int l = A.length;
-		List< Integer > list = Arrays.stream(A).boxed().collect(Collectors.toList());
+		Set<Integer> set = new HashSet<>();
+		Integer []b=null;
 		int res = -1;
-		for(int k = 0 ; k < l ; k++){
+		int c=1;
+		for(int k = 0 ; k < A.length ; k++){
 			int p = A[k];
-			if(X == p){
-				res = k;
-				break;
+			if(p <= X){
+				if(set.add(p)){
+					res = Math.max(res, k);
+				}
 			}
 		}
-		for(int y = 1 ; y <= X; y++){
-			if(!list.contains(y)){
-				res = -1;
-				break;
+		b = set.toArray(new Integer[set.size()]);
+		Arrays.sort(b);
+		for(int y = 0; y <b.length; y++){
+			if(b[y] != c || b.length != X){
+				return -1;
 			}
+			c+=1;
 		}
 		return res;
 	}

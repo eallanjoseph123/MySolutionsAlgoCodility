@@ -12,19 +12,48 @@ public class PracticeTest {
 	
 	
 	@Test
+	public void triangleTest(){
+		Assert.assertEquals(0,
+				PracticeSolutions.triangle(new 
+						int[]{10,50}));
+		Assert.assertEquals(0,
+				PracticeSolutions.triangle(new 
+						int[]{10,50,5}));
+		Assert.assertEquals(0,
+				PracticeSolutions.triangle(new 
+						int[]{10,50,5,1}));
+		Assert.assertEquals(1,
+				PracticeSolutions.triangle(new 
+						int[]{10,2,5,1,8,20}));
+		}
+	
+	@Test
+	public void maxProductOfThreeTest(){
+		Assert.assertEquals(120,
+				PracticeSolutions.maxProductOfThree(new 
+						int[]{-4, -6, 3, 4, 5}));
+		Assert.assertEquals(125,
+				PracticeSolutions.maxProductOfThree(new 
+						int[]{-5,5,-5,4}));
+		Assert.assertEquals(60,
+				PracticeSolutions.maxProductOfThree(new int[]{-3,1,2,-2,5,6}));
+		Assert.assertEquals(-80,
+				PracticeSolutions.maxProductOfThree(new int[]{-10,-2,-4}));
+	}
+	
+	@Test
 	public void maxCounterTest(){
-		Assert.assertArrayEquals(new int[]
-				{3,2,0},PracticeSolutions.
-				maxCounter(3, new int[]{2,1,1,2,1}));
 		Assert.assertArrayEquals(new int[]
 				{3},PracticeSolutions.
 				maxCounter(1, new int[]{2,1,1,2,1}));
 		Assert.assertArrayEquals(new int[]
-	{1},PracticeSolutions.
-	maxCounter(1, new int[]{1}));
+				{3,2,0},PracticeSolutions.
+				maxCounter(3, new int[]{2,1,1, 2,1}));
 		Assert.assertArrayEquals(new int[]
-				{3,2,2,4,2},PracticeSolutions.
-				maxCounter(5, new int[]{3,4,4,6,1,4,4}));
+	{1},PracticeSolutions.maxCounter(1, new int[]{1}));
+		Assert.assertArrayEquals(new int[]{3,2,2,4,2},
+				PracticeSolutions.
+				maxCounter(5, new int[]{3,4,4,6,1,4,4})); 
 	}
 	
 	@Ignore
@@ -138,20 +167,13 @@ public class PracticeTest {
 
 	@Test
 	public void frogRiver() {
-		Assert.assertEquals(-1, PracticeSolutions.frogRiver(5, new int[] { 1, 2, 3, 5, 3, 1 }));
-		Assert.assertEquals(-1, PracticeSolutions.frogRiver(2, new int[] { 2, 2, 2, 2, 2 }));
-		Assert.assertEquals(-1, PracticeSolutions.frogRiver(5, new int[] { 5 }));
-		Assert.assertEquals(-1, PracticeSolutions.frogRiver(5, new int[] { 1, 3, 1, 4, 2, 3, 4 }));
-		Assert.assertEquals(6, PracticeSolutions.frogRiver(5, new int[] { 1, 3, 1, 4, 2, 3, 5, 4 }));
-		Assert.assertEquals(-1,
-				PracticeSolutions.frogRiver(33,
-						new int[] { 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4,
-								2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1,
-								3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3,
-								5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4, 1, 3, 1,
-								4, 2, 3, 5, 4, 1, 3, 1, 4, 2, 33, 5, 4, 1, 3, 1, 4, 2, 3, 5, 4 }));
-
-	}
+		Assert.assertEquals(-1, PracticeSolutions.
+				frogRiver(2, new int[] { 1,1,1,1}));
+		Assert.assertEquals(6, PracticeSolutions.
+				frogRiver(5, new int[] { 1, 3, 1, 4, 2, 3, 5, 4 }));
+		Assert.assertEquals(4, PracticeSolutions.
+				frogRiver(3, new int[] { 1, 3, 1, 3, 2,1,3 }));
+		}
 
 	// @Test
 	public void frogJumpTest() {
