@@ -11,7 +11,6 @@ import java.util.stream.IntStream;
 public class PracticeSolutions {
 
 	public static void main(String[] args) {
-		System.out.println(-5*5* -5);
 	}
 	
 	//100
@@ -76,23 +75,33 @@ public class PracticeSolutions {
 
 		return b;
 	}
-	//less than 50 score
+	//100
+	/**
+	 * List< Integer > list = Arrays.stream(A).boxed().collect(Collectors.toList());
+		when i used the above code (Stream) there was 
+		a problem in performance when converting an array to list.
+		
+		the old way to convert is much better in performance using for loop
+		(below  code)
+	 * @param A
+	 * @return
+	 */
 	public static int missingInteger(int[] A){
 		int res = 1;
-		int l = A.length;
-		int last = 0;
 		Arrays.sort(A);
-		for(int x = 0 ; x < l ; x++){
-			int cv = A[x];
-			if(last == cv){	
-				res-=1;
+		int y = 0;
+		Set<Integer> set = new HashSet<>();
+		for(int x = 0 ;x < A.length;x++){
+			set.add(A[x]);
+		}
+		while (true) {
+			y += 1;
+			if (set.contains(y)) {
 				continue;
+			} else {
+				res = y;
+				break;
 			}
-			if(res != cv){
-			  break;
-			}
-			last = cv;
-			res += 1;
 		}
 		return res;
 	}
@@ -106,12 +115,6 @@ public class PracticeSolutions {
 			sum += A[x];
 			res = Math.min(res, Math.abs(sum - (total-sum)));
 		}
-		return res;
-	}
-	
-	public static int sum(){
-		int res = 0;
-
 		return res;
 	}
 	

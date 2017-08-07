@@ -56,7 +56,7 @@ public class PracticeTest {
 				maxCounter(5, new int[]{3,4,4,6,1,4,4})); 
 	}
 	
-	@Ignore
+	
 	@Test
 	public void missingIntegerTest() {
 		Assert.assertEquals(1,
