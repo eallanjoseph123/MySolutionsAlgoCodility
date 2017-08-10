@@ -12,6 +12,70 @@ public class PracticeTest {
 	
 	
 	@Test
+	public void fishTest(){
+		int []  a = {4,3,2,1,5};
+		int []  b = {0,1,0,0,0};
+		//Assert.assertEquals(2,PracticeSolutions.fish(a,b));
+	}
+	@Test
+	public void familyTest(){
+		Assert.assertEquals(433110,
+				PracticeSolutions.family(101334));
+		Assert.assertEquals(0,
+				PracticeSolutions.family(0));
+		Assert.assertEquals(321,
+				PracticeSolutions.family(213));
+		Assert.assertEquals(553,
+				PracticeSolutions.family(535));
+		Assert.assertEquals(553,
+				PracticeSolutions.family(535));
+		Assert.assertEquals(321,
+				PracticeSolutions.family(321));
+		Assert.assertEquals(-1,
+				PracticeSolutions.family(111_332_255));
+		Assert.assertEquals(96_653_221,
+				PracticeSolutions.family(23_521_966));
+		
+	}
+	@Test
+	public void swapTest(){
+		Assert.assertEquals(
+				Boolean.TRUE,
+				PracticeSolutions.swap1(new 
+				int[]{1,5,3,3,7}));
+		Assert.assertEquals(Boolean.FALSE,
+				PracticeSolutions.swap1(new 
+				int[]{1,3,5,3,4}));
+		Assert.assertEquals(Boolean.TRUE,
+				PracticeSolutions.swap1(new 
+				int[]{1,3,5}));
+	}
+	
+	//@Test
+	public void bracketsTest(){
+		Assert.assertEquals(0,
+				PracticeSolutions.brackets("{{{{"));
+		Assert.assertEquals(1,
+				PracticeSolutions.brackets("{[()()]}"));
+		Assert.assertEquals(1,
+		PracticeSolutions.brackets("({{({}[]{})}}[]{})"));	
+		Assert.assertEquals(0,
+		PracticeSolutions.brackets("([)()]"));
+		Assert.assertEquals(0,
+		PracticeSolutions.brackets("([)()]"));
+		Assert.assertEquals(0,
+				PracticeSolutions.brackets(")("));
+		Assert.assertEquals(0,
+				PracticeSolutions.brackets(")"));
+		Assert.assertEquals(1,
+				PracticeSolutions.brackets("([{}])"));
+		Assert.assertEquals(0,
+				PracticeSolutions.brackets("([{)(}])"));
+		Assert.assertEquals(0,
+				PracticeSolutions.brackets("())(()"));
+	}
+	
+	@Test
 	public void triangleTest(){
 		Assert.assertEquals(0,
 				PracticeSolutions.triangle(new 
@@ -192,9 +256,9 @@ public class PracticeTest {
 		Assert.assertEquals(1, PracticeSolutions.permMissingElem(new int[] {}));
 	}
 
-	// @Test
+	 @Test
 	public void oddOccurrencesInArrayTest() {
-		Assert.assertEquals(42, PracticeSolutions.oddOccurrencesInArray(new int[] { 3, 3, 1, 1, 5, 5, 42, 42 }));
+		Assert.assertEquals(0, PracticeSolutions.oddOccurrencesInArray(new int[] { 3, 3, 1, 1, 5, 5, 42, 42 }));
 		Assert.assertEquals(46, PracticeSolutions.oddOccurrencesInArray(new int[] { 46 }));
 		Assert.assertEquals(46, PracticeSolutions.oddOccurrencesInArray(new int[] { 42, 46, 42 }));
 		Assert.assertEquals(42, PracticeSolutions.oddOccurrencesInArray(new int[] { 42 }));
