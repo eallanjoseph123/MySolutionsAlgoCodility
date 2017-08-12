@@ -9,14 +9,24 @@ import org.junit.Test;
 import main.java.PracticeSolutions;
 
 public class PracticeTest {
-	
-	
+	@Test
+	public void sumTTest(){
+		int []  a = {3,5,4,1, 2, 2, 3, 4};
+		Assert.assertEquals(6,PracticeSolutions.sumT(a));
+	}
 	@Test
 	public void fishTest(){
 		int []  a = {4,3,2,1,5};
 		int []  b = {0,1,0,0,0};
-		//Assert.assertEquals(2,PracticeSolutions.fish(a,b));
+		Assert.assertEquals(2,PracticeSolutions.fish(a,b));
 	}
+	@Test
+	public void fishTest1(){
+		int []  a = {4,5,6,7,2,1};
+		int []  b = {0,1,0,0,0,1};
+		Assert.assertEquals(5,PracticeSolutions.fish(a,b));
+	}
+	
 	@Test
 	public void familyTest(){
 		Assert.assertEquals(433110,

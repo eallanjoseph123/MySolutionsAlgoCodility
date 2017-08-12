@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,25 +18,87 @@ public class PracticeSolutions {
 		
 	}
 	
-	
-	public static int fish(int[] A, int[] B){
-		int l = A.length;
-		int currentLive = 0;
-		List<Integer> fish=new LinkedList<Integer>();
-		for(int x = 0; x < l ;x ++){
-			fish.add(A[x]);
-		}
-		currentLive = fish.size();
-		for(int x = 0 ;x < l-1;x++){
-			if(B[x] != B[x+1]){
-				if(A[x] > A[x+1]){
-					fish.remove(x+1);
-				}if(A[x] < A[x+1]){
-					fish.remove(x);
+	public static int sumT(int[]a){
+		int res = 0 ;
+		Arrays.sort(a);
+		Set<Integer> set = Arrays.stream(a).boxed().collect(Collectors.toSet());
+		for(int x =0 ;x < a.length-1;x++){
+			if(a[x] == a[x+1]){
+				if(set.contains(a[x])){
+					set.remove(a[x]);
 				}
 			}
 		}
-		return currentLive;
+		for(int c:set){
+			res+=c;
+		}
+		return res;
+	}
+	
+	
+	public static int fish3(int[] A, int[] B) {
+		  Stack<Integer> s = new Stack<Integer>();
+		  
+		  for(int i = 0; i < A.length; i++){
+		    int size 	= A[i];
+		    int dir 	= B[i];
+		    if(s.empty()){
+		      s.push(i);
+		    }
+		    else{
+		      while(!s.empty() && dir - B[s.peek()] == -1 && A[s.peek()] < size){
+		        s.pop();
+		      }
+		      if(!s.empty()){
+		        if(dir - B[s.peek()] != -1) s.push(i);
+		      }
+		      else{
+		        s.push(i);		  
+		      }
+		    }
+		  }
+		  return s.size();
+		}
+	
+	public static int fish(int[] A, int[] B){
+		int l = A.length;
+		int c = 1;
+		List<Integer> fish=new LinkedList<Integer>();
+		Stack<Integer>  direc = new Stack<Integer>();
+		for(int x = 0; x < l ;x ++){
+			fish.add(A[x]);
+			direc.push(B[x]);
+		}
+		while(true){
+			int p = (c < direc.size()) ? direc.get(c) : direc.get(c-1);
+			int q = ((c+1) < direc.size()) ? direc.get(c+1) : direc.get(c);
+			if(p != q){
+				int p1=fish.get(c);
+				int q1=fish.get(c+1);
+			    if( p1 > q1){
+			     fish.remove(c+1);
+			     direc.pop();
+			     c=c-1;
+			    }else{
+				    if(p == 1){
+				    	fish.remove(c);
+				    	direc.remove(c);
+					    c=c-1;
+				    }else{
+				    	fish.remove(c);
+				    	direc.remove(c);
+					    c=c-1;
+				    }
+				    
+			    }
+			}else{
+				break;
+			}
+			
+			c+=1;
+		}
+		
+		return fish.size();
 	}
 
 	public static int family(int N) {
