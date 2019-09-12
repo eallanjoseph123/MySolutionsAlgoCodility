@@ -3,45 +3,180 @@ package main.java;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Test {
 	public static void main(String[] args) {
-		System.out.println(findPairs(new int[] {1,3,1,5,4},0));
-		System.out.println(findPairs(new int[] {3,1,1,4,5},2));
-		System.out.println(findPairs(new int[] {1,2,3,4,5},-1));
-		System.out.println(findPairs(new int[] {1,1,1,1,1},0));
+	}
+	
+	public static int fib(int N) {
+		if (N <2) return N;
+		int s = 0;
+		int l =0;
+		int r= 1;
+		for(int x = 0;x <N-1;x++) {
+			s = l+r;
+			l =r;
+			r =s;
+		}
+		
+		return s;
+	}
+
+	public int countCharacters(String[] words, String chars) {
+		int res = 0;
+		Set<Character> set = chars.chars().mapToObj(e->(char)e).collect(Collectors.toSet());
+		int l = words.length;
+		boolean flag = true;
+		for (int x = 0; x < l; x++) {
+			String element = words[x];
+			for (int y = 0;y < element.length(); y++) {
+				char i = element.charAt(y);
+				if(!set.contains(i)) {
+					flag = false;
+					break;
+				}
+				
+			}
+			
+			if(flag) {
+				res+=element.length();
+			}
+			
+		}
+		return res;
+	}
+
+	public static int[] sortedSquares(int[] A) {
+		int l = A.length;
+		int[] res = new int[l];
+		for (int x = 0; x < l; x++) {
+			res[x] = A[x] * A[x];
+		}
+		Arrays.sort(res);
+		return res;
+	}
+
+	public static List<Integer> findDuplicates(int[] nums) {
+		List<Integer> res = new ArrayList<>();
+		if (nums.length == 1 || nums.length == 0 || nums == null) {
+			return res;
+		}
+		int l = nums.length;
+		for (int x = 0; x < l; x++) {
+			int i = Math.abs(nums[x]) - 1;
+			if (nums[i] >= 0) {
+				nums[i] = -nums[i];
+			} else {
+				res.add(i + 1);
+			}
+		}
+		return res;
+
+	}
+
+	public static int majorityElement(int[] nums) {
+		int half = nums.length / 2;
+		if (nums.length == 1 || nums.length == 2)
+			return nums[0];
+
+		Arrays.sort(nums);
+
+		for (int x = 0; x < nums.length - 1; x++) {
+			int v = nums[x];
+			int v2 = nums[x + 1];
+			if (v != v2 || (x + 2) == nums.length) {
+				if ((x + 1) > half) {
+					return v;
+				}
+			}
+
+		}
+
+		return 0;
+	}
+
+	public static int majorityElement2(int[] nums) {
+		int half = nums.length / 2;
+
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int x = 0; x < nums.length; x++) {
+			int v = nums[x];
+			if (map.containsKey(v)) {
+				map.put(v, map.get(v) + 1);
+			} else {
+				map.put(v, 1);
+			}
+
+			if (map.get(v) > half) {
+				return v;
+			}
+
+		}
+
+		return 0;
+	}
+
+	public static boolean containsDuplicate2(int[] nums) {
+		Arrays.sort(nums);
+		for (int x = 0; x < nums.length - 1; x++) {
+			if (nums[x] == nums[x + 1]) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static boolean containsDuplicate(int[] nums) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int x : nums) {
+			if (map.containsKey(x)) {
+				map.put(x, map.get(x) + 1);
+				continue;
+			}
+			map.put(x, 1);
+
+		}
+		for (Map.Entry<Integer, Integer> m : map.entrySet()) {
+			if (m.getValue() > 1) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public static int findPairs(int[] nums, int k) {
-		if(nums == null || nums.length == 0) {
+		if (nums == null || nums.length == 0) {
 			return 0;
 		}
-		int total =0;
-		Map<Integer,Integer> map = new HashMap<>();
+		int total = 0;
+		Map<Integer, Integer> map = new HashMap<>();
 		Arrays.sort(nums);
-		for(int c = 0;c<nums.length;c++) {
-				int initialValue = nums[c];
-				int missingVal = initialValue + k;
-				int result = Arrays.binarySearch(nums, missingVal);
-				if(result > -1 && c != result) {
-					int actualValue = nums[result];
-					if(Math.abs((initialValue - actualValue) )!= k) {
-						continue;
-					}
-					if(map.containsKey(initialValue) && map.get(initialValue) == actualValue) {
-						continue;
-					}
-					map.put(initialValue, actualValue);
-					total+=1;
+		for (int c = 0; c < nums.length; c++) {
+			int initialValue = nums[c];
+			int missingVal = initialValue + k;
+			int result = Arrays.binarySearch(nums, missingVal);
+			if (result > -1 && c != result) {
+				int actualValue = nums[result];
+				if (Math.abs((initialValue - actualValue)) != k) {
+					continue;
 				}
-			
-			
+				if (map.containsKey(initialValue) && map.get(initialValue) == actualValue) {
+					continue;
+				}
+				map.put(initialValue, actualValue);
+				total += 1;
+			}
+
 		}
 		return total;
 	}
